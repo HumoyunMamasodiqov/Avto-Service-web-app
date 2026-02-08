@@ -92,9 +92,9 @@ LOCALE_PATHS = [
 # ==============================
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # Developmentda static fayllarni topish uchun
+    os.path.join(BASE_DIR, 'static'),  # Development uchun
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # collectstatic natijasi
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Production uchun
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # ==============================
