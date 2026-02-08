@@ -3,17 +3,24 @@
 <html lang="en">
 
 <head>
-  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avto Service</title>
-    <link rel="icon" type="image/x-icon" href="{% static 'img/logo.png' %}">
-    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'img/logo.png' %}">
+
+    <!-- Manifest -->
     <link rel="manifest" href="{% static 'manifest.json' %}">
-    <meta name="theme-color" content="#0d6efd"> 
+    <meta name="theme-color" content="#FF6600">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Tailwind Custom Colors -->
     <script>
         tailwind.config = {
             theme: {
@@ -21,21 +28,37 @@
                     colors: {
                         primary: '#FF6600',       // Orange main
                         primaryDark: '#CC5200',   // Darker orange
-                        secondary: '#1A3A5F',     // Navy for contrast
-                        accent: '#2E7D32'         // Green accent for buttons/icons
+                        secondary: '#1A3A5F',     // Navy
+                        accent: '#2E7D32'         // Green
                     }
                 }
             }
         }
     </script>
-    
 </head>
 
-<body>
+<body class="bg-white text-gray-800">
     {% include "navigation.html" %}
+
     {% block content %}
+    <!-- Main content goes here -->
     {% endblock %}
+
     {% include "footer.html" %}
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register("{% static 'service-worker.js' %}")
+                    .then(function(registration) {
+                        console.log('ServiceWorker registered with scope:', registration.scope);
+                    }).catch(function(err) {
+                        console.log('ServiceWorker registration failed:', err);
+                    });
+            });
+        }
+    </script>
 </body>
 
 </html>

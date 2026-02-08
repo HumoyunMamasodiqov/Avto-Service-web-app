@@ -1,23 +1,26 @@
-const CACHE_NAME = "it-house-v1";
-
+const CACHE_NAME = "avtoservis-cache-v1";
 const urlsToCache = [
-  "/",
-  "/base.html",
-  "/logo.png"
+    "/",
+    "/static/img/logo.png",
+    "/static/css/style.css",
+    "/static/js/app.js"
 ];
 
-self.addEventListener("install", event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(urlsToCache);
-    })
-  );
+self.addEventListener('install', function(event) {
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then(function(cache) {
+                console.log("Opened cache");
+                return cache.addAll(urlsToCache);
+            })
+    );
 });
 
-self.addEventListener("fetch", event => {
-  event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
-    })
-  );
+self.addEventListener('fetch', function(event) {
+    event.respondWith(
+        caches.match(event.request)
+            .then(function(response) {
+                return response || fetch(event.request);
+            })
+    );
 });
