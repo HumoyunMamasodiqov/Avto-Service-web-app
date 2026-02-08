@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<style>
+  body {
+    animation: fadeIn 0.4s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0 }
+    to { opacity: 1 }
+  }
+</style>
+<body class="bg-gray-50 pb-24">
+  {% if user.is_authenticated %}
+    <div class="px-4 mt-2 bg-[#F37021] text-white p-2 rounded-t-3xl shadow-lg">
+        <button class="w-full bg-[#F37021] text-white py-4 rounded-xl font-semibold active:scale-95 transition">
+            {{ user.username }}
+        </button>
+    </div>
+  {% else %}
+    <div class="px-4 mt-2 bg-[#F37021] text-white p-2 rounded-t-3xl shadow-lg">
+        <a href="{% url 'register' %}" class="w-full block">
+            <button class="w-full bg-[#F37021] text-white py-4 rounded-xl font-semibold active:scale-95 transition">
+                {% trans "Kirish" %}
+            </button>
+        </a>
+    </div>
+  {% endif %}
+
+  <header class="bg-[#F37021] text-white p-6 rounded-b-3xl shadow-lg mt-[5px]">
+      <h1 class="text-2xl font-bold">{% trans "Usta topish" %}</h1>
+      <p class="text-blue-100 text-sm">{% trans "O'zingizga qulay usta va manzilni tanlang" %}</p>
+  </header>
+
+  <form method="GET">
+      <main class="p-4 space-y-6">
+
+          <!-- Hudud tanlash -->
+          <section>
+              <label class="block text-gray-700 font-semibold mb-2">
+                  <i class="fa-solid fa-location-dot text-blue-900 mr-2"></i>{% trans "Hududni tanlang" %}
+              </label>
+              <select name="shahar"
+ class="w-full p-4 bg-white border border-gray-200 rounded-2xl shadow-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                  <option value="">{% trans "Hududni tanlang" %}</option>
+                  <option value="Poytug" {% if selected_shahar == "Poytug" %} selected {% endif %}>{% trans "Poytug" %}</option>
+                  <option value="Moygir" {% if selected_shahar == "Moygir" %} selected {% endif %}>{% trans "Moygir" %}</option>
+                  <option value="Xaqulobod" {% if selected_shahar == "Xaqulobod" %} selected {% endif %}>{% trans "Xaqulobod" %}</option>
+                  <option value="Savxoz" {% if selected_shahar == "Savxoz" %} selected {% endif %}>{% trans "Savxoz" %}</option>
+                  <option value="Kamsamol" {% if selected_shahar == "Kamsamol" %} selected {% endif %}>{% trans "Kamsamol" %}</option>
+                  <option value="Tortkol" {% if selected_shahar == "Tortkol" %} selected {% endif %}>{% trans "Tortkol" %}</option>
+                  <option value="Yakatut" {% if selected_shahar == "Yakatut" %} selected {% endif %}>{% trans "Yakatut" %}</option>
+
+              </select>
+          </section>
+
+          <!-- Ish turini tanlash -->
+          <section>
+              <label class="block text-gray-700 font-semibold mb-4">
+                  <i class="fa-solid fa-screwdriver-wrench text-blue-900 mr-2"></i>{% trans "Qanday yordam kerak?" %}
+              </label>
+              <select name="ish"
+                  class="w-full p-4 bg-white border border-gray-200 rounded-2xl shadow-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                  <option value="">{% trans "Qanday ish kerak?" %}</option>
+                  {% for ish in ishlar %}
+                  <option value="{{ ish.id }}" {% if selected_ish == ish.id|stringformat:"s" %}selected{% endif %}>
+                      {{ ish.nomi }}
+                  </option>
+                  {% endfor %}
+              </select>
+          </section>
+
+          <button type="submit" class="w-full bg-[#F37021] text-white font-bold py-4 rounded-2xl transition-all">
+              {% trans "Ustalarni qidirish" %}
+          </button>
+      </main>
+  </form>
+
+  <!-- Topilgan ustalar -->
+  <section class="p-4">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">{% trans "Topilgan ustalar" %}</h2>
+      <main class="p-4 space-y-4">
+          {% if ustalar %}
+              {% for usta in ustalar %}
+                  <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col space-y-4">
+                      <div class="flex items-start justify-between">
+                          <div class="flex items-center">
+                              <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center">
+                                  <i class="fa-solid fa-user-gear text-blue-600 text-2xl"></i>
+                              </div>
+                              <div class="ml-4">
+                                  <h3 class="font-bold text-gray-800">{{ usta.ism }}</h3>
+                                  <p class="text-sm text-gray-500">
+                                      {% for ish in usta.ishlar.all %}
+                                      {{ ish.nomi }}{% if not forloop.last %}, {% endif %}
+                                      {% empty %}
+                                      {% trans "Ishlar ko‘rsatilmagan" %}
+                                      {% endfor %}
+                                  </p>
+                                  <div class="flex items-center mt-1">
+                                      <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                                      <span class="text-sm font-bold ml-1 text-gray-700">4.2</span>
+                                      <span class="text-xs text-gray-400 ml-1">(120 {% trans "ta sharh" %})</span>
+                                  </div>
+                              </div>
+                          </div>
+                          {% if usta.favqulodda %}
+                              <span class="bg-red-100 text-red-600 text-[10px] font-bold px-2 py-1 rounded-full uppercase">{% trans "Favqulodda" %}</span>
+                          {% endif %}
+                      </div>
+                      <div class="flex gap-[10px]">
+                          <div class="flex items-center text-gray-500 text-sm">
+                              <i class="fa-solid fa-location-dot w-5"></i>
+                              <span>{{ usta.shahar }}</span>
+                          </div>
+                          <div class="flex items-center text-gray-500 text-sm">
+                              <span>{{ usta.yoshi }} {% trans "yosh" %}</span>
+                          </div>
+                      </div>
+                      <div class="flex space-x-2">
+                          <a href="tel:{{ usta.telefon }}" class="flex-1 bg-[#F37021] text-white py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 active:scale-95 transition-all">
+                              <i class="fa-solid fa-phone"></i> {% trans "Qo'ng'iroq" %}
+                          </a>
+                          <a href="{% url 'usta_profile' usta.id %}" class="flex-1 bg-[#F37021] text-white py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 active:scale-95 transition-all">
+                              <i class="fa-regular fa-eye"></i> {% trans "Profilni ko'rish" %}
+                          </a>
+                      </div>
+                  </div>
+              {% endfor %}
+          {% else %}
+              <p class="text-center text-gray-500 mt-10">{% trans "Mos usta topilmadi" %}</p>
+          {% endif %}
+      </main>
+  </section>
+</body>
+
+{% endblock %}

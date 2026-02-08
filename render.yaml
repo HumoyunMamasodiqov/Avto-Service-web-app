@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: Main
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py migrate
+      python manage.py collectstatic --no-input
+    startCommand: gunicorn Main.wsgi:application
+
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: Main.settings
+      - key: SECRET_KEY
+        value: django-insecure-...
+      - key: DEBUG
+        value: 'False'

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<form action="{% url 'logout' %}" method="GET">
+   <button class="bg-red-500 text-white px-4 py-2 rounded-lg font-semibold">
+      Chiqish
+   </button>
+</form>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% comment %} <main class="p-4 space-y-4">
+
+{% if ustalar %}
+{% for usta in ustalar %}
+
+<div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col space-y-4">
+
+    <div class="flex items-start justify-between">
+        <div class="flex items-center">
+
+            <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center">
+                <i class="fa-solid fa-user-gear text-blue-600 text-2xl"></i>
+            </div>
+
+            <div class="ml-4">
+                <h3 class="font-bold text-gray-800">{{ usta.ism }}</h3>
+
+                <p class="text-sm text-gray-500">
+                    {% for ish in usta.ishlar.all %}
+                        {{ ish.nomi }}{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                        Ish turi ko‘rsatilmagan
+                    {% endfor %}
+                </p>
+
+                <div class="flex items-center mt-1">
+                    <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                    <span class="text-sm font-bold ml-1 text-gray-700">4.8</span>
+                    <span class="text-xs text-gray-400 ml-1">(120 ta sharh)</span>
+                </div>
+            </div>
+        </div>
+
+        <span class="bg-green-100 text-green-600 text-[10px] font-bold px-2 py-1 rounded-full uppercase">
+            Ochiq
+        </span>
+    </div>
+
+    <div class="flex items-center text-gray-500 text-sm">
+        <i class="fa-solid fa-location-dot w-5"></i>
+        <span>{{ usta.shahar }}</span>
+    </div>
+
+    <div class="flex space-x-2">
+        <a href="tel:{{ usta.telefon }}"
+           class="flex-1 bg-blue-900 text-white py-3 rounded-xl font-semibold text-sm text-center">
+            <i class="fa-solid fa-phone mr-2"></i> Qo‘ng‘iroq
+        </a>
+
+        <button class="flex-1 bg-gray-100 text-gray-800 py-3 rounded-xl font-semibold text-sm text-center">
+            Profilni ko‘rish
+        </button>
+    </div>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+<p class="text-center text-gray-500 mt-10">😔 Mos usta topilmadi</p>
+{% endif %}
+
+</main> {% endcomment %}

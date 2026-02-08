@@ -1,0 +1,214 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-26 12:03+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\Avto\templates\home.html:26 .\Avto\templates\user.html:163
+msgid "Kirish"
+msgstr "Login"
+
+#: .\Avto\templates\home.html:33
+msgid "Usta topish"
+msgstr "Finding a Master"
+
+#: .\Avto\templates\home.html:34
+msgid "O'zingizga qulay usta va manzilni tanlang"
+msgstr "Choose a convenient master and location for you"
+
+#: .\Avto\templates\home.html:43 .\Avto\templates\home.html:47
+msgid "Hududni tanlang"
+msgstr "Select region"
+
+#: .\Avto\templates\home.html:48
+msgid "Poytug"
+msgstr ""
+
+#: .\Avto\templates\home.html:49
+msgid "Moygir"
+msgstr ""
+
+#: .\Avto\templates\home.html:50
+msgid "Xaqulobod"
+msgstr ""
+
+#: .\Avto\templates\home.html:51
+msgid "Savxoz"
+msgstr ""
+
+#: .\Avto\templates\home.html:52
+msgid "Kamsamol"
+msgstr ""
+
+#: .\Avto\templates\home.html:53
+msgid "Tortkol"
+msgstr ""
+
+#: .\Avto\templates\home.html:60
+msgid "Qanday yordam kerak?"
+msgstr "What help do you need?"
+
+#: .\Avto\templates\home.html:64
+msgid "Qanday ish kerak?"
+msgstr "What kind of work is needed?"
+
+#: .\Avto\templates\home.html:74
+msgid "Ustalarni qidirish"
+msgstr "Search for masters"
+
+#: .\Avto\templates\home.html:81
+msgid "Topilgan ustalar"
+msgstr "Found masters"
+
+#: .\Avto\templates\home.html:97
+msgid "Ishlar ko‘rsatilmagan"
+msgstr "No jobs listed."
+
+#: .\Avto\templates\home.html:103
+msgid "ta sharh"
+msgstr "comments"
+
+#: .\Avto\templates\home.html:108
+msgid "Favqulodda"
+msgstr "Emergency"
+
+#: .\Avto\templates\home.html:117
+msgid "yosh"
+msgstr "young"
+
+#: .\Avto\templates\home.html:122
+msgid "Qo'ng'iroq"
+msgstr "Call"
+
+#: .\Avto\templates\home.html:125
+msgid "Profilni ko'rish"
+msgstr "View profile"
+
+#: .\Avto\templates\home.html:131
+msgid "Mos usta topilmadi"
+msgstr "No suitable master found"
+
+#: .\Avto\templates\navigation.html:63
+msgid "Asosiy"
+msgstr "Home"
+
+#: .\Avto\templates\navigation.html:70
+msgid "Sozlamalar"
+msgstr "Settings"
+
+#: .\Avto\templates\navigation.html:78
+msgid "Boshqa"
+msgstr "Other"
+
+#: .\Avto\templates\navigation.html:84
+msgid "Buyurtmalar"
+msgstr "Orders"
+
+#: .\Avto\templates\navigation.html:91 .\Avto\templates\user.html:8
+msgid "Profil"
+msgstr "Profile"
+
+#: .\Avto\templates\profile.html:43
+#, fuzzy
+#| msgid "Qo'ng'iroq"
+msgid "Qo'ng'iroq qilish"
+msgstr "Call"
+
+#: .\Avto\templates\profile.html:46
+msgid "Navbatga yozulish"
+msgstr "Sign up for the queue"
+
+#: .\Avto\templates\profile.html:55
+msgid "Xizmatlar"
+msgstr "Services"
+
+#: .\Avto\templates\profile.html:63
+msgid "Kelishiladi"
+msgstr "Agreed"
+
+#: .\Avto\templates\profile.html:73
+msgid "Manzil va aloqa"
+msgstr "Address and contact"
+
+#: .\Avto\templates\profile.html:87
+msgid "Mijozlar sharhlari"
+msgstr "Customer reviews"
+
+#: .\Avto\templates\profile.html:89
+#, fuzzy
+#| msgid "Ustalarni qidirish"
+msgid "Sharh qoldirish"
+msgstr "Search for masters"
+
+#: .\Avto\templates\profile.html:102
+msgid "Usta ishingizga baraka! Tez va sifatli!"
+msgstr "Bless your master work! Fast and high quality!"
+
+#: .\Avto\templates\user.html:18
+msgid "Tizimga kiring va avtoservis xizmatlaridan to'liq foydalaning"
+msgstr "Log in and take full advantage of car service services"
+
+#: .\Avto\templates\user.html:30
+msgid "Ilova tili"
+msgstr "Application language"
+
+#: .\Avto\templates\user.html:33 .\Avto\templates\user.html:61
+msgid "O'zbekcha"
+msgstr "Uzbek"
+
+#: .\Avto\templates\user.html:51
+msgid "Tilni tanlang"
+msgstr "Select language"
+
+#: .\Avto\templates\user.html:76
+msgid "Русский"
+msgstr "Russian"
+
+#: .\Avto\templates\user.html:88
+msgid "English"
+msgstr ""
+
+#: .\Avto\templates\user.html:101
+msgid "Tanlash"
+msgstr "Select"
+
+#: .\Avto\templates\user.html:112
+msgid "Barcha atrofdagi servislar"
+msgstr "All surrounding services"
+
+#: .\Avto\templates\user.html:121
+msgid "Xabarnomalar"
+msgstr "Notifications"
+
+#: .\Avto\templates\user.html:130
+msgid "Biz bilan bog'lanish"
+msgstr "contact us"
+
+#: .\Avto\templates\user.html:139
+msgid "Ma'lumotnoma"
+msgstr "Reference"
+
+#: .\Avto\templates\user.html:147
+msgid "Versiya"
+msgstr "Version"
+
+#: .\Avto\templates\user.html:155
+msgid "Chiqish"
+msgstr "Exit"
+
+#~ msgid "Salom dunyo"
+#~ msgstr "hello"

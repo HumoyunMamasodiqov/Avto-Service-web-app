@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>Avto Service</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      transition: opacity 0.6s ease;
+      background-color: #ffffff;
+      overflow: hidden;
+    }
+
+    body.fade-out {
+      opacity: 0;
+    }
+
+    /* Logo shake / engine start */
+    .logo {
+      animation: logoShake 1s ease-in-out forwards;
+      transform-origin: center;
+    }
+
+
+
+    /* Kichik avtomobil animatsiyasi */
+    .car {
+      position: absolute;
+      bottom: 15%;
+      left: -100px; /* ekranning tashqarisi */
+      width: 80px;
+      height: auto;
+      animation: drive 2.5s forwards ease-in-out;
+    }
+
+    @keyframes drive {
+      0% { left: -100px; }
+      100% { left: 110%; }
+    }
+
+    /* Mobile uchun responsive avtomobil */
+    @media (max-width: 640px) {
+      .car {
+        width: 60px;
+        bottom: 10%;
+      }
+      .logo {
+        width: 24; /* w-24 */
+      }
+    }
+  </style>
+
+  <script>
+    // 2.5 soniyadan keyin home page
+    setTimeout(() => {
+      document.body.classList.add('fade-out');
+      setTimeout(() => {
+        window.location.replace("{% url 'home' %}");
+      }, 600);
+    }, 2500);
+  </script>
+</head>
+
+<body class="flex flex-col items-center justify-center h-screen relative bg-[#F37021]">
+  <!-- Logo markazda -->
+  <img src="{% static 'img/logo.png' %}" class="logo w-32 h-auto mx-auto mb-6 rounded-full" alt="Logo">
+
+  <!-- Kichik avtomobil -->
+
+</body>
+</html>

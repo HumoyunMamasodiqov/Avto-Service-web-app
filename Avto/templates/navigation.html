@@ -1,0 +1,112 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header class="bg-white shadow sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+    
+    <div class="flex items-center gap-2 text-xl font-bold text-secondary">
+      <i class="fas fa-tools text-primary"></i>
+      AvtoServis.uz
+    </div>
+
+    <ul class="hidden md:flex gap-6 font-medium">
+      <li><a href="{% url 'home' %}" class="hover:text-primary">Bosh sahifa</a></li>
+      <li><a href="#" class="hover:text-primary">Ustalar</a></li>
+      <li><a href="#" class="hover:text-primary">Xizmatlar</a></li>
+      <li><a href="#" class="hover:text-primary">Narxlar</a></li>
+      <li><a href="#" class="hover:text-primary">Aloqa</a></li>
+    </ul>
+
+    <div class="hidden md:flex gap-4 text-lg text-gray-500">
+      <i class="fas fa-bell cursor-pointer"></i>
+      <i class="fas fa-user cursor-pointer"></i>
+    </div>
+
+    <button id="menuBtn" class="md:hidden text-2xl">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+
+
+  <ul id="mobileMenu" class="hidden flex-col bg-white px-6 pb-4 md:hidden">
+    <li class="py-2 border-b"><a href="#">Bosh sahifa</a></li>
+    <li class="py-2 border-b"><a href="#">Ustalar</a></li>
+    <li class="py-2 border-b"><a href="#">Xizmatlar</a></li>
+    <li class="py-2 border-b"><a href="#">Narxlar</a></li>
+    <li class="py-2"><a href="#">Aloqa</a></li>
+  </ul>
+</header>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  {% load i18n %}
+  <nav class="fixed bottom-0 inset-x-0 bg-white border-t border-gray-100 px-2 py-3 flex justify-between items-center text-[10px] font-bold tracking-tight z-50">
+
+    <a href="{% url 'home' %}" class="flex-1">
+      <div class="flex flex-col items-center {% if request.resolver_match.url_name == 'home' %} text-[#F37021] border-t-2 border-[#F37021] -mt-[14px] pt-3 {% else %} text-gray-400 {% endif %} transition-all duration-300">
+        <i class="fa-solid fa-house text-lg"></i>
+        <span class="mt-1 uppercase">{% trans "Asosiy" %}</span>
+      </div>
+    </a>
+
+    <a href="#" class="flex-1 text-center">
+      <div class="flex flex-col items-center {% if request.resolver_match.url_name == 'settings' %} text-[#F37021] border-t-2 border-[#F37021] -mt-[14px] pt-3 {% else %} text-gray-400 {% endif %} transition-all duration-300">
+        <i class="fa-solid fa-gear text-lg"></i>
+        <span class="mt-1 uppercase">{% trans "Sozlamalar" %}</span>
+      </div>
+    </a>
+
+    <a href="{% url 'evukator' %}" class="flex-1 flex flex-col items-center">
+      <div class="w-12 h-12 {% if request.resolver_match.url_name == 'evukator' %} bg-[#F37021] text-white {% else %} bg-blue-50 text-blue-500 {% endif %} rounded-full flex items-center justify-center -mt-8 border-4 border-white shadow-md transition-all duration-300">
+        <i class="fa-solid fa-truck-pickup text-xl"></i>
+      </div>
+      <span class="mt-1 uppercase {% if request.resolver_match.url_name == 'explore' %} text-[#F37021] {% else %} text-gray-400 {% endif %}">{% trans "Evukator" %}</span>
+    </a>
+
+    <a href="{% url 'my_avto' %}" class="flex-1">
+      <div class="flex flex-col items-center {% if request.resolver_match.url_name == 'my_avto' %} text-[#F37021] border-t-2 border-[#F37021] -mt-[14px] pt-3 {% else %} text-gray-400 {% endif %} transition-all duration-300">
+        <i class="fa-solid fa-car text-lg"></i>
+        <span class="mt-1 uppercase">{% trans "My Avto" %}</span>
+      </div>
+    </a>
+
+    <a href="{% url 'user_parofile' %}" class="flex-1">
+      <div class="flex flex-col items-center {% if request.resolver_match.url_name == 'user_parofile' %} text-[#F37021] border-t-2 border-[#F37021] -mt-[14px] pt-3 {% else %} text-gray-400 {% endif %} transition-all duration-300">
+        <i class="fa-solid fa-user text-lg"></i>
+        <span class="mt-1 uppercase">{% trans "Profil" %}</span>
+      </div>
+    </a>
+<a href="{% url 'admin:index' %}" class="flex-1">
+  <div class="flex flex-col items-center 
+    {% if request.resolver_match.url_name == 'user_parofile' %}
+      text-[#F37021] border-t-2 border-[#F37021] -mt-[14px] pt-3
+    {% else %}
+      text-gray-400
+    {% endif %}
+    transition-all duration-300">
+    
+    <i class="fa-solid fa-user text-lg"></i>
+    <span class="mt-1 uppercase">{% trans "ADMIN" %}</span>
+  </div>
+</a>
+</nav>
+
+</body>
+
+</html>

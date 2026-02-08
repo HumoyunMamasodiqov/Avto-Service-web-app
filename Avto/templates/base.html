@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avto Service</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo.png' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+    <meta name="theme-color" content="#0d6efd"> 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6600',       // Orange main
+                        primaryDark: '#CC5200',   // Darker orange
+                        secondary: '#1A3A5F',     // Navy for contrast
+                        accent: '#2E7D32'         // Green accent for buttons/icons
+                    }
+                }
+            }
+        }
+    </script>
+    
+</head>
+
+<body>
+    {% include "navigation.html" %}
+    {% block content %}
+    {% endblock %}
+    {% include "footer.html" %}
+</body>
+
+</html>

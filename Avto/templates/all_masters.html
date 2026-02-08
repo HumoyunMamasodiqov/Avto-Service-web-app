@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+{% for usta in ustalar %}
+<div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col space-y-4">
+    <div class="flex items-start justify-between">
+        <div class="flex items-center">
+            <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center">
+                <i class="fa-solid fa-user-gear text-blue-600 text-2xl"></i>
+            </div>
+            <div class="ml-4">
+                <h3 class="font-bold text-gray-800">{{ usta.ism }}</h3>
+                <p class="text-sm text-gray-500">
+                    {% for ish in usta.ishlar.all %}
+                    {{ ish.nomi }}{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                    Ishlar ko‘rsatilmagan
+                    {% endfor %}
+                </p>
+                <div class="flex items-center mt-1">
+                    <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                    <span class="text-sm font-bold ml-1 text-gray-700">4.2</span>
+                    <span class="text-xs text-gray-400 ml-1">(120 ta sharh)</span>
+                </div>
+            </div>
+        </div>
+        {% if usta.favqulodda %}
+        <span class="bg-red-100 text-red-600 text-[10px] font-bold px-2 py-1 rounded-full uppercase">Favqulodda</span>
+        {% else %}
+        <!-- <span class="bg-green-100 text-green-600 text-[10px] font-bold px-2 py-1 rounded-full uppercase">Ochiq</span> -->
+        {% endif %}
+    </div>
+
+    <div class="flex items-center text-gray-500 text-sm">
+        <i class="fa-solid fa-location-dot w-5"></i>
+        <span>{{ usta.shahar }}</span>
+    </div>
+
+    <div class="flex space-x-2">
+        <a href="tel:{{ usta.telefon }}"
+            class="flex-1 bg-[#F37021] text-white py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 active:scale-95 transition-all">
+            <i class="fa-solid fa-phone"></i> Qo'ng'iroq
+        </a>
+        <a href="{% url 'usta_profile' usta.id %}"
+            class="flex-1 bg-[#F37021] text-white py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 active:scale-95 transition-all">
+            <i class="fa-regular fa-eye"></i> Profilni ko'rish
+        </a>
+
+    </div>
+
+</div>
+{% endfor %}
+
+{% endblock %}

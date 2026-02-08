@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block content %}
+
+<body class="bg-[#F3F4F6] min-h-screen pb-20">
+
+    <!-- Header / Cover -->
+    <div class="relative h-60 w-full overflow-hidden object-cover">
+        <img src="{% static 'img/usta_photo.jpg' %}" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black/30"></div>
+        <div class="absolute top-6 left-6 right-6 flex justify-between items-center text-white">
+            <a href="{% url 'home' %}" class="w-10 h-10 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-md">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Profile card -->
+    <div class="relative -mt-20 px-6">
+        <div class="bg-white rounded-[2.5rem] p-6 text-center shadow-lg border border-gray-100">
+            <div class="absolute -top-12 left-1/2 -translate-x-1/2">
+                <div class="w-24 h-24 rounded-full border-4 border-white shadow-xl overflow-hidden bg-white">
+                    <img src="{% static 'img/usta.jpg' %}" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <h1 class="text-xl font-bold text-gray-800">{{ usta.ism }}</h1>
+                <p class="text-sm text-gray-400 mt-1 uppercase tracking-tight">
+                    {% for ish in usta.ishlar.all %}
+                        {{ ish.nomi }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <div class="flex items-center justify-center mt-3 gap-1">
+                    <span class="font-bold text-gray-800">4.2</span>
+                    <i class="fa-solid fa-star text-orange-500 text-xs"></i>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 mt-6">
+                <a href="tel:{{ usta.telefon }}" class="bg-[#F37021] text-white py-3 rounded-2xl font-bold text-sm shadow-md shadow-orange-100">
+                    {% trans "Qo'ng'iroq qilish" %}
+                </a>
+                <button class="bg-[#F37021] text-white py-3 rounded-2xl font-bold text-sm shadow-md shadow-orange-100">
+                    {% trans "Navbatga yozulish" %}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services -->
+    <div class="px-6 mt-6">
+        <div class="bg-white rounded-3xl p-6 shadow-sm">
+            <h3 class="text-center font-bold text-gray-500 text-sm mb-4 uppercase tracking-widest">{% trans "Xizmatlar" %}</h3>
+            <div class="space-y-4">
+                {% for ish in usta.ishlar.all %}
+                <div class="flex justify-between items-center text-sm">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-wrench text-gray-400"></i>
+                        <span class="text-gray-700">{{ ish.nomi }}</span>
+                    </div>
+                    <span class="text-gray-400">{% trans "Kelishiladi" %}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Address & Contact -->
+    <div class="px-6 mt-4">
+        <div class="bg-white rounded-3xl p-5 shadow-sm">
+            <h3 class="font-bold text-gray-800 mb-4">{% trans "Manzil va aloqa" %}</h3>
+            <div class="flex items-start gap-4">
+                <div class="flex items-center text-gray-500 text-sm">
+                    <i class="fa-solid fa-location-dot w-5"></i>
+                    <span>{{ usta.shahar }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews -->
+    <div class="px-6 mt-4 pb-10">
+        <div class="bg-white rounded-3xl p-5 shadow-sm">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-bold text-gray-800">{% trans "Mijozlar sharhlari" %}</h3>
+                <button class="bg-orange-500 text-white px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                    {% trans "Sharh qoldirish" %}
+                </button>
+            </div>
+            <div class="flex items-start gap-3">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-10 h-10 rounded-full border border-gray-100">
+                <div class="flex-1">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-sm">Alisher A.</span>
+                        <div class="flex items-center text-xs">
+                            <span class="font-bold mr-1">5.0</span>
+                            <i class="fa-solid fa-star text-orange-500"></i>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">{% trans "Usta ishingizga baraka! Tez va sifatli!" %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+{% endblock %}

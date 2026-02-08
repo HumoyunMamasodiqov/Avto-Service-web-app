@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<title>Avto Parkim</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-b from-gray-100 to-gray-200 min-h-screen">
+
+<div class="max-w-md mx-auto pb-28">
+
+<!-- HEADER -->
+<header class="p-6">
+    <h1 class="text-3xl font-black text-gray-800">Avto Parkim</h1>
+    <p class="text-gray-500">Mashinalar turar joyi</p>
+</header>
+
+<!-- FORM -->
+<section id="formSection" class="px-4">
+<div class="bg-white rounded-3xl p-6 shadow-xl ">
+    <h2 class="font-bold text-gray-700 mb-4">Avtomobil qo‘shish</h2>
+
+    <div class="space-y-3">
+        <select id="carType" class="w-full p-4 rounded-xl bg-gray-100">
+            <option value="">Mashina tanlang</option>
+            <option value="gentra">Gentra</option>
+            <option value="spark">Spark</option>
+            <option value="cobalt">Cobalt</option>
+            <option value="nexia">Nexia</option>
+            <option value="malibu">Malibu</option>
+            <option value="tracker">Tracker</option>
+            <option value="onix">Onix</option>
+        </select>
+
+        <input id="carNumber" class="w-full p-4 rounded-xl bg-gray-100"
+               placeholder="Davlat raqami (01 A 777 AA)">
+
+        <input id="currentKm" type="number"
+               class="w-full p-4 rounded-xl bg-gray-100"
+               placeholder="Hozirgi probeg (km)">
+
+        <input id="oilInterval" type="number"
+               class="w-full p-4 rounded-xl bg-gray-100"
+               placeholder="Moy almashtirish (km)">
+
+        <button onclick="saveCar()"
+                class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold">
+            Saqlash
+        </button>
+    </div>
+</div>
+</section>
+
+<!-- CARDS -->
+<section id="carSection" class="px-4 mt-6 hidden"></section>
+
+<!-- ADD BUTTON -->
+<button id="addBtn" onclick="showForm()"
+class="fixed bottom-6 left-1/2 -translate-x-1/2
+       bg-[#F37021] text-white px-4 mb-[60px] mt-[40px] py-4 rounded-full
+       font-bold shadow-xl hidden"> Mashina qo‘shish
+</button>
+
+</div>
+
+<script>
+/* 🔥 DJANGO STATIC LOCAL IMAGES */
+const images = {
+  gentra: "{% static 'cars/gentra.jpg' %}",
+  spark: "{% static 'cars/spark.jpg' %}",
+  cobalt: "{% static 'cars/cobalt.jpg' %}",
+  nexia: "{% static 'cars/nexia.jpg' %}",
+  malibu: "{% static 'cars/malibu.jpg' %}",
+  tracker: "{% static 'cars/tracker.jpg' %}",
+  onix: "{% static 'cars/onix.jpg' %}"
+}
+
+let cars = JSON.parse(localStorage.getItem("cars")) || []
+
+if (cars.length) {
+    formSection.classList.add("hidden")
+    addBtn.classList.remove("hidden")
+    renderCars()
+}
+
+function saveCar() {
+    const car = {
+        id: Date.now(),
+        type: carType.value,
+        number: carNumber.value,
+        currentKm: Number(currentKm.value),
+        oilInterval: Number(oilInterval.value),
+        lastOilKm: Number(currentKm.value),
+        lastOilDate: new Date().toLocaleDateString()
+    }
+
+    cars.push(car)
+    localStorage.setItem("cars", JSON.stringify(cars))
+
+    formSection.classList.add("hidden")
+    addBtn.classList.remove("hidden")
+    renderCars()
+}
+
+function renderCars() {
+    carSection.innerHTML = ""
+    carSection.classList.remove("hidden")
+
+    cars.forEach(car => {
+        const used = car.currentKm - car.lastOilKm
+        const left = car.oilInterval - used
+        const percent = Math.max(0, (left / car.oilInterval) * 100)
+
+        carSection.innerHTML += `
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden mb-6">
+            <img src="${images[car.type]}" class="w-full h-48 object-cover">
+
+            <div class="p-6 space-y-4">
+                <div>
+                    <h3 class="text-xl font-black">${car.type.toUpperCase()}</h3>
+                    <p class="text-gray-500">${car.number}</p>
+                </div>
+
+                <div class="flex justify-between text-sm text-gray-600">
+                    <span>🚙 Yurgan</span>
+                    <span>${car.currentKm} km</span>
+                </div>
+
+                <div>
+                    <div class="flex justify-between text-xs text-gray-400 mb-1">
+                        <span>Moygacha qoldi</span>
+                        <span>${left} km</span>
+                    </div>
+                    <div class="w-full h-3 bg-gray-200 rounded-full">
+                        <div class="h-3 rounded-full ${percent < 20 ? "bg-red-500" : "bg-green-500"}"
+                             style="width:${percent}%"></div>
+                    </div>
+                </div>
+
+                <p class="text-xs text-gray-400">
+                    Oxirgi moy: ${car.lastOilDate}
+                </p>
+            </div>
+        </div>`
+    })
+}
+
+function showForm() {
+    formSection.classList.remove("hidden")
+    addBtn.classList.add("hidden")
+}
+</script>
+
+</body>
+</html>
+
+
+
+{% endblock %}
